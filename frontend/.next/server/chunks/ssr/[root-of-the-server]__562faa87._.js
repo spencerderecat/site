@@ -63,6 +63,44 @@ function MusicPage() {
                 fileName: "[project]/src/app/music/page.tsx",
                 lineNumber: 9,
                 columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "flex flex-col items-center justify-center min-h-screen",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "w-full max-w-xl mt-32",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                            className: "text-2xl font-bold text-black mb-6 text-center",
+                            children: "on rotation"
+                        }, void 0, false, {
+                            fileName: "[project]/src/app/music/page.tsx",
+                            lineNumber: 12,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("iframe", {
+                            src: "https://open.spotify.com/embed/playlist/0RpHATwjC1rVQnNDEV9cbK?utm_source=generator",
+                            width: "100%",
+                            height: "380",
+                            frameBorder: "0",
+                            allow: "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture",
+                            allowFullScreen: true,
+                            className: "rounded-xl shadow-lg",
+                            title: "Spotify Playlist"
+                        }, void 0, false, {
+                            fileName: "[project]/src/app/music/page.tsx",
+                            lineNumber: 13,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/app/music/page.tsx",
+                    lineNumber: 11,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/src/app/music/page.tsx",
+                lineNumber: 10,
+                columnNumber: 7
             }, this)
         ]
     }, void 0, true);
