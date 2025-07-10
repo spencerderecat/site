@@ -19,7 +19,7 @@ export default function SurfPage() {
         </div>
       </div>
       <div className="w-full flex justify-center mt-6">
-        <span className="text-lg font-bold text-black">spots surfed: {pinCount}</span>
+        <span className="text-lg font-bold text-black">spot counter: {pinCount}</span>
       </div>
     </>
   );

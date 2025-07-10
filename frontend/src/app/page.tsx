@@ -25,12 +25,12 @@ export default function Home() {
             <span className="text-black text-xl font-bold cursor-pointer hover:underline transition-all duration-200">SURF</span>
           </Link>
           
-          <Link href="/sport" className="group">
-            <span className="text-black text-xl font-bold cursor-pointer hover:underline transition-all duration-200">SPORT</span>
+          <Link href="/about" className="group">
+            <span className="text-black text-xl font-bold cursor-pointer hover:underline transition-all duration-200">ABOUT</span>
           </Link>
           
-          <Link href="/life" className="group">
-            <span className="text-black text-xl font-bold cursor-pointer hover:underline transition-all duration-200">LIFE</span>
+          <Link href="/moments" className="group">
+            <span className="text-black text-xl font-bold cursor-pointer hover:underline transition-all duration-200">MOMENTS</span>
           </Link>
         </div>
       </div>
