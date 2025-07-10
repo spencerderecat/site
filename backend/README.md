@@ -1,6 +1,6 @@
 # SPENCER Backend
 
-A Flask-based backend API for the SPENCER website.
+Right now this is not in use, but maybe someday I'll build a legit backend for this page.
 
 ## Setup
 
