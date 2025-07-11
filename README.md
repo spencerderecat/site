@@ -1,5 +1,4 @@
-# SPENCER Frontend
-
+# spencers site
 A Next.js-based frontend for the SPENCER website with groovy pastel theme.
 
 ## File Structure
