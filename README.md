@@ -1,50 +1,76 @@
-# SPENCER
+# SPENCER Frontend
 
-A groovy pastel-themed website with a colorful tie-dye background featuring "SPENCER" in massive bubble letters and four interactive sections.
+A Next.js-based frontend for the SPENCER website with groovy pastel theme.
 
-## Project Structure
+## File Structure
 
 ```
 spencerd/
-├── frontend/          # Next.js frontend application
-│   ├── src/          # Source code
-│   ├── public/       # Static assets
-│   └── package.json  # Frontend dependencies
-└── README.md         # This file
+├── .next/                # Next.js build output
+├── node_modules/         # Node dependencies
+├── public/               # Static assets
+│   ├── crab-sunglasses.png
+│   └── picnic-group.png
+├── src/
+│   └── app/
+│       ├── page.tsx      # Home page
+│       ├── layout.tsx    # Root layout
+│       ├── globals.css   # Global styles
+│       ├── favicon.ico
+│       ├── surf/
+│       │   ├── page.tsx
+│       │   └── SurfMap.tsx
+│       ├── moments/
+│       │   └── page.tsx
+│       ├── about/
+│       │   └── page.tsx
+│       └── music/
+│           └── page.tsx
+├── package.json
+├── package-lock.json
+├── tailwind.config.js
+├── next-env.d.ts
+├── next.config.ts
+├── postcss.config.mjs
+├── eslint.config.mjs
+├── tsconfig.json
+└── README.md
 ```
 
-## Quick Start
+## Setup
 
-### Frontend
+1. Install dependencies:
 ```bash
-cd frontend
 npm install
+```
+
+2. Run the development server:
+```bash
 npm run dev
 ```
-Visit: http://localhost:3000
 
-### Backend (not currently in use)
-The backend directory and files have been removed. All features are currently implemented in the frontend only. Backend development may resume in the future.
+The frontend will start on `http://localhost:3000`
 
 ## Features
 
-- **🎨 Groovy Pastel Theme** - Dynamic tie-dye background with animated gradients
-- **💫 Bubble Letter Typography** - "SPENCER" in massive colorful bubble letters
-- **🧑‍💼 About Section** - Minimalist bullet points, fun facts, and corkboard-style pinned images with captions and lines
-- **🎵 Music Section** - Embedded Spotify playlist with "on rotation" heading
-- **🌊 Surf Section** - Interactive, zoomable world map with custom pins, notes, persistent local storage, and a spot counter
-- **📸 Moments Section** - Placeholder text: "still trying to figure out what to do with this page :)"
-- **🚫 Backend** - Not currently in use; all features are frontend-only
+- **Groovy Pastel Theme** - Colorful tie-dye background with animated gradients
+- **Bubble Letter Typography** - "SPENCER" displayed in massive colorful bubble letters
+- **Interactive Buttons** - Four themed buttons for About, Music, Surf, and Moments
+- **Responsive Design** - Works on desktop and mobile devices
+- **Smooth Animations** - Hover effects and transitions throughout
+
+## Pages
+
+- `/` - Main page with SPENCER title and navigation
+- `/music` - Music section with Spotify playlist
+- `/surf` - Surf section with interactive map and spot counter
+- `/about` - About section with bullet points and pinned images
+- `/moments` - Moments section (placeholder)
 
 ## Tech Stack
 
-**Frontend:**
 - Next.js 15.3.5
 - React 19
 - TypeScript 5
 - Tailwind CSS 4
-- Geist Fonts
-- react-leaflet (for interactive maps)
-
-**Backend:**
-- (Not currently in use)
+- Geist Fonts 
