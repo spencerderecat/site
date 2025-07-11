@@ -7,18 +7,18 @@ export default function AboutPage() {
     <>
       <div className="fixed inset-0 bg-pink-100 -z-10" />
       <Link href="/" className="fixed top-4 left-4 text-3xl text-black hover:underline cursor-pointer z-50">←</Link>
-      <div className="flex flex-col md:flex-row items-center justify-center min-h-screen p-8 gap-8">
+      <div className="flex flex-col md:flex-row items-center justify-center min-h-screen p-4 md:p-8 gap-8">
         {/* Left image pinned effect */}
-        <div className="relative flex flex-col items-center" style={{ minWidth: '0' }}>
+        <div className="relative flex flex-col items-center w-full md:w-auto mb-8 md:mb-0">
           {/* Pin */}
           <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-6 h-6 bg-red-400 rounded-full border-2 border-white shadow-md z-10" />
           <img
-            src="/crab-sunglasses.png"
+            src="/site/crab-sunglasses.png"
             alt="Crab with Sunglasses"
-            className="rounded-2xl shadow-2xl max-w-sm w-full max-h-[600px] object-contain border-2 border-gray-300 p-2 bg-white mb-8 md:mb-0 rotate-[-4deg]"
+            className="rounded-2xl shadow-lg w-full max-w-xs md:max-w-sm max-h-[400px] md:max-h-[600px] object-contain border-2 border-gray-300 p-2 bg-white"
           />
           {/* Arrow and caption */}
-          <div className="flex flex-col items-center mt-2">
+          <div className="flex flex-col items-center mt-4 md:mt-2 mb-4 md:mb-0">
             <svg
               width="60"
               height="40"
@@ -33,8 +33,8 @@ export default function AboutPage() {
           </div>
         </div>
         {/* Center about text */}
-        <div className="max-w-md w-full mt-[-140px]">
-          <h1 className="text-3xl font-bold text-black mb-8 text-center">about</h1>
+        <div className="max-w-md w-full flex flex-col items-center md:items-start mt-4 md:mt-[-140px]">
+          <h1 className="text-3xl font-bold text-black mb-8 text-center md:text-left mt-4 md:mt-0">about</h1>
           <ul className="space-y-4 text-lg text-black">
             <li>• I attended UC Berkeley (Cal) and am a massive cal football fan</li>
             <li>• I work as a software engineer at Intuit</li>
@@ -45,16 +45,16 @@ export default function AboutPage() {
           </ul>
         </div>
         {/* Right image pinned effect */}
-        <div className="relative flex flex-col items-center" style={{ minWidth: '0' }}>
+        <div className="relative flex flex-col items-center w-full md:w-auto mt-8 md:mt-0">
           {/* Pin */}
           <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-6 h-6 bg-red-400 rounded-full border-2 border-white shadow-md z-10" />
           <img
-            src="/picnic-group.png"
+            src="/site/picnic-group.png"
             alt="Picnic Group"
-            className="rounded-2xl shadow-2xl max-w-sm w-full max-h-[400px] object-contain border-2 border-gray-300 p-2 bg-white mt-8 md:mt-0 rotate-[3deg]"
+            className="rounded-2xl shadow-lg w-full max-w-xs md:max-w-sm border-2 border-gray-300 p-2 bg-white"
           />
           {/* Arrow and caption */}
-          <div className="flex flex-col items-center mt-2">
+          <div className="flex flex-col items-center mt-4 md:mt-2">
             <svg
               width="60"
               height="40"
