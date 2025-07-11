@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "npm run build && touch ./out/.nojekyll && gh-pages -d out --nojekyll"
+    "deploy": "npm run build && gh-pages -d out --nojekyll --cname https://spencerderecat.github.io/site"
   },
   "dependencies": {
     "gh-pages": "^6.3.0",
