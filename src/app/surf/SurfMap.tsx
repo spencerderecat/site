@@ -22,7 +22,7 @@ const customIcon = new L.DivIcon({
   popupAnchor: [0, -36],
 });
 
-function PinsLayer({ pins, addPin, deletePin, openAddModal }: { pins: Pin[]; addPin: (pin: Pin) => void; deletePin: (idx: number) => void; openAddModal: (lat: number, lng: number) => void }) {
+function PinsLayer({ pins, deletePin, openAddModal }: { pins: Pin[]; deletePin: (idx: number) => void; openAddModal: (lat: number, lng: number) => void }) {
   useMapEvents({
     click(e) {
       openAddModal(e.latlng.lat, e.latlng.lng);
@@ -65,7 +65,7 @@ export default function SurfMap({ onPinCountChange }: { onPinCountChange?: (coun
             setPins(parsed);
             console.log("Loaded pins from localStorage:", parsed);
           }
-        } catch (e) {
+        } catch {
           console.warn("Failed to parse pins from localStorage");
         }
       }
@@ -81,10 +81,6 @@ export default function SurfMap({ onPinCountChange }: { onPinCountChange?: (coun
       console.log("Saved pins to localStorage:", pins);
     }
   }, [pins, loaded, onPinCountChange]);
-
-  const addPin = useCallback((pin: Pin) => {
-    setPins((prev) => [...prev, pin]);
-  }, []);
 
   const deletePin = useCallback((idx: number) => {
     setPins((prev) => prev.filter((_, i) => i !== idx));
@@ -116,7 +112,7 @@ export default function SurfMap({ onPinCountChange }: { onPinCountChange?: (coun
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <PinsLayer pins={pins} addPin={() => {}} deletePin={deletePin} openAddModal={openAddModal} />
+        <PinsLayer pins={pins} deletePin={deletePin} openAddModal={openAddModal} />
       </MapContainer>
       {modalOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-[1000] bg-black/40">
