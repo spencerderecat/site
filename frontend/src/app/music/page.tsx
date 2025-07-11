@@ -8,7 +8,7 @@ export default function MusicPage() {
       <div className="fixed inset-0 bg-pink-100 -z-10" />
       <Link href="/" className="fixed top-4 left-4 text-3xl text-black hover:underline cursor-pointer z-50">←</Link>
       <div className="flex flex-col items-center justify-center min-h-screen">
-        <div className="w-full max-w-xl mt-32">
+        <div className="w-full max-w-xl mt-8">
           <h2 className="text-2xl font-bold text-black mb-6 text-center">on rotation</h2>
           <iframe
             src="https://open.spotify.com/embed/playlist/0RpHATwjC1rVQnNDEV9cbK?utm_source=generator"

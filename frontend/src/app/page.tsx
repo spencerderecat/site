@@ -17,16 +17,16 @@ export default function Home() {
         
         {/* Four buttons horizontally spread */}
         <div className="flex flex-wrap justify-center gap-6 max-w-4xl">
+          <Link href="/about" className="group">
+            <span className="text-black text-xl font-bold cursor-pointer hover:underline transition-all duration-200">ABOUT</span>
+          </Link>
+          
           <Link href="/music" className="group">
             <span className="text-black text-xl font-bold cursor-pointer hover:underline transition-all duration-200">MUSIC</span>
           </Link>
           
           <Link href="/surf" className="group">
             <span className="text-black text-xl font-bold cursor-pointer hover:underline transition-all duration-200">SURF</span>
-          </Link>
-          
-          <Link href="/about" className="group">
-            <span className="text-black text-xl font-bold cursor-pointer hover:underline transition-all duration-200">ABOUT</span>
           </Link>
           
           <Link href="/moments" className="group">
