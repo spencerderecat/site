@@ -10,10 +10,6 @@ spencerd/
 │   ├── src/          # Source code
 │   ├── public/       # Static assets
 │   └── package.json  # Frontend dependencies
-├── backend/          # Flask backend API
-│   ├── app.py        # Main Flask application
-│   ├── requirements.txt # Python dependencies
-│   └── README.md     # Backend documentation
 └── README.md         # This file
 ```
 
@@ -27,25 +23,18 @@ npm run dev
 ```
 Visit: http://localhost:3000
 
-### Backend
-```bash
-cd backend
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
-python app.py
-```
-API: http://localhost:5000
+### Backend (not currently in use)
+The backend directory and files have been removed. All features are currently implemented in the frontend only. Backend development may resume in the future.
 
 ## Features
 
 - **🎨 Groovy Pastel Theme** - Dynamic tie-dye background with animated gradients
 - **💫 Bubble Letter Typography** - "SPENCER" in massive colorful bubble letters
-- **🎵 Music Section** - Work in progress
-- **🌊 Surf Section** - Work in progress  
-- **⚽ Sport Section** - Work in progress
-- **✨ Life Section** - Work in progress
-- **🚀 Backend API** - Flask endpoints for each section
+- **🧑‍💼 About Section** - Minimalist bullet points, fun facts, and corkboard-style pinned images with captions and lines
+- **🎵 Music Section** - Embedded Spotify playlist with "on rotation" heading
+- **🌊 Surf Section** - Interactive, zoomable world map with custom pins, notes, persistent local storage, and a spot counter
+- **📸 Moments Section** - Placeholder text: "still trying to figure out what to do with this page :)"
+- **🚫 Backend** - Not currently in use; all features are frontend-only
 
 ## Tech Stack
 
@@ -55,8 +44,7 @@ API: http://localhost:5000
 - TypeScript 5
 - Tailwind CSS 4
 - Geist Fonts
+- react-leaflet (for interactive maps)
 
 **Backend:**
-- Flask 3.0.0
-- Flask-CORS
-- Python 3.x
+- (Not currently in use)
