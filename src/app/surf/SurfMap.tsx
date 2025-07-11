@@ -2,6 +2,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
 import L from "leaflet";
+import 'leaflet/dist/leaflet.css'
 
 interface Pin {
   lat: number;
@@ -55,7 +56,6 @@ export default function SurfMap({ onPinCountChange }: { onPinCountChange?: (coun
 
   // Load pins from localStorage on mount (client only)
   useEffect(() => {
-    import("leaflet/dist/leaflet.css");
     if (typeof window !== "undefined") {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
