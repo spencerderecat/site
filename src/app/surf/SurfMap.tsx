@@ -7,6 +7,8 @@ import 'leaflet/dist/leaflet.css'
 interface Pin {
   lat: number;
   lng: number;
+  name: string;
+  spot: string;
   note: string;
 }
 
@@ -33,7 +35,11 @@ function PinsLayer({ pins, deletePin, openAddModal }: { pins: Pin[]; deletePin: 
       {pins.map((pin, idx) => (
         <Marker key={idx} position={[pin.lat, pin.lng]} icon={customIcon}>
           <Popup>
-            <div>{pin.note}</div>
+            <div className="text-sm">
+              <div className="font-bold text-black">{pin.spot}</div>
+              <div className="text-gray-600 mb-2">{pin.name}</div>
+              <div className="text-black">{pin.note}</div>
+            </div>
             <button
               className="mt-2 px-2 py-1 bg-red-500 text-white rounded hover:bg-red-700"
               onClick={() => deletePin(idx)}
@@ -52,6 +58,8 @@ export default function SurfMap({ onPinCountChange }: { onPinCountChange?: (coun
   const [loaded, setLoaded] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalLatLng, setModalLatLng] = useState<{ lat: number; lng: number } | null>(null);
+  const [nameInput, setNameInput] = useState("");
+  const [spotInput, setSpotInput] = useState("");
   const [noteInput, setNoteInput] = useState("");
 
   // Load pins from localStorage on mount (client only)
@@ -88,6 +96,8 @@ export default function SurfMap({ onPinCountChange }: { onPinCountChange?: (coun
 
   const openAddModal = (lat: number, lng: number) => {
     setModalLatLng({ lat, lng });
+    setNameInput("");
+    setSpotInput("");
     setNoteInput("");
     setModalOpen(true);
   };
@@ -95,12 +105,20 @@ export default function SurfMap({ onPinCountChange }: { onPinCountChange?: (coun
   const closeModal = () => {
     setModalOpen(false);
     setModalLatLng(null);
+    setNameInput("");
+    setSpotInput("");
     setNoteInput("");
   };
 
   const handleAddPin = () => {
-    if (modalLatLng && noteInput.trim()) {
-      setPins((prev) => [...prev, { lat: modalLatLng.lat, lng: modalLatLng.lng, note: noteInput.trim() }]);
+    if (modalLatLng && nameInput.trim() && spotInput.trim() && noteInput.trim()) {
+      setPins((prev) => [...prev, { 
+        lat: modalLatLng.lat, 
+        lng: modalLatLng.lng, 
+        name: nameInput.trim(),
+        spot: spotInput.trim(),
+        note: noteInput.trim() 
+      }]);
       closeModal();
     }
   };
@@ -117,13 +135,27 @@ export default function SurfMap({ onPinCountChange }: { onPinCountChange?: (coun
       {modalOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-[1000] bg-black/40">
           <div className="bg-white rounded-xl shadow-2xl p-8 w-full max-w-md flex flex-col items-center">
-            <h2 className="text-xl font-bold mb-4 text-black">Add a Surf Spot Note</h2>
+            <h2 className="text-xl font-bold mb-4 text-black">Add a Surf Spot</h2>
+            <input
+              type="text"
+              className="w-full p-2 border border-gray-300 rounded mb-3 text-black"
+              placeholder="Spot"
+              value={spotInput}
+              onChange={e => setSpotInput(e.target.value)}
+              autoFocus
+            />
+            <input
+              type="text"
+              className="w-full p-2 border border-gray-300 rounded mb-3 text-black"
+              placeholder="Added By"
+              value={nameInput}
+              onChange={e => setNameInput(e.target.value)}
+            />
             <textarea
               className="w-full h-24 p-2 border border-gray-300 rounded mb-4 text-black"
-              placeholder="Describe this surf spot..."
+              placeholder="Notes..."
               value={noteInput}
               onChange={e => setNoteInput(e.target.value)}
-              autoFocus
             />
             <div className="flex gap-4 w-full justify-end">
               <button
@@ -135,7 +167,7 @@ export default function SurfMap({ onPinCountChange }: { onPinCountChange?: (coun
               <button
                 className="px-4 py-2 rounded bg-blue-600 text-white font-bold hover:bg-blue-700 disabled:bg-blue-200"
                 onClick={handleAddPin}
-                disabled={!noteInput.trim()}
+                disabled={!nameInput.trim() || !spotInput.trim() || !noteInput.trim()}
               >
                 Add
               </button>
