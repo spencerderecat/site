@@ -1,5 +1,4 @@
 {
-  "homepage": "https://spencerderecat.github.io/site",
   "name": "spencerd",
   "version": "0.1.0",
   "private": true,
@@ -8,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "npm run build && gh-pages -d out --nojekyll --cname https://spencerderecat.github.io/site"
+    "deploy": "npm run build && gh-pages -d out --nojekyll --cname https://spencerderecat.github.io/"
   },
   "dependencies": {
     "gh-pages": "^6.3.0",

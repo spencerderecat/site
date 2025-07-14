@@ -13,7 +13,7 @@ export default function AboutPage() {
           {/* Pin */}
           <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-6 h-6 bg-red-400 rounded-full border-2 border-white shadow-md z-10" />
           <img
-            src="/site/crab-sunglasses.png"
+            src="/crab-sunglasses.png"
             alt="Crab with Sunglasses"
             className="rounded-2xl shadow-lg w-full max-w-xs md:max-w-sm max-h-[400px] md:max-h-[600px] object-contain border-2 border-gray-300 p-2 bg-white"
           />
@@ -49,7 +49,7 @@ export default function AboutPage() {
           {/* Pin */}
           <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-6 h-6 bg-red-400 rounded-full border-2 border-white shadow-md z-10" />
           <img
-            src="/site/picnic-group.png"
+            src="/picnic-group.png"
             alt="Picnic Group"
             className="rounded-2xl shadow-lg w-full max-w-xs md:max-w-sm border-2 border-gray-300 p-2 bg-white"
           />
