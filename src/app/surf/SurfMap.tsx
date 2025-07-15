@@ -5,6 +5,7 @@ import L from "leaflet";
 import 'leaflet/dist/leaflet.css'
 
 interface Pin {
+  id?: number;
   lat: number;
   lng: number;
   name: string;
@@ -12,7 +13,7 @@ interface Pin {
   note: string;
 }
 
-const STORAGE_KEY = "surf-map-pins";
+const API_URL = "/api";
 
 const svgString = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" width="36" height="36" style="display:block;"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" /></svg>`;
 
@@ -32,23 +33,25 @@ function PinsLayer({ pins, deletePin, openAddModal }: { pins: Pin[]; deletePin: 
   });
   return (
     <>
-      {pins.map((pin, idx) => (
-        <Marker key={idx} position={[pin.lat, pin.lng]} icon={customIcon}>
-          <Popup>
-            <div className="text-sm">
-              <div className="font-bold text-black">{pin.spot}</div>
-              <div className="text-gray-600 mb-2">{pin.name}</div>
-              <div className="text-black">{pin.note}</div>
-            </div>
-            <button
-              className="mt-2 px-2 py-1 bg-red-500 text-white rounded hover:bg-red-700"
-              onClick={() => deletePin(idx)}
-            >
-              Delete Pin
-            </button>
-          </Popup>
-        </Marker>
-      ))}
+      {pins
+        .filter(pin => typeof pin.lat === 'number' && typeof pin.lng === 'number' && !isNaN(pin.lat) && !isNaN(pin.lng))
+        .map((pin, idx) => (
+          <Marker key={idx} position={[pin.lat, pin.lng]} icon={customIcon}>
+            <Popup>
+              <div className="text-sm">
+                <div className="font-bold text-black">{pin.spot}</div>
+                <div className="text-gray-600 mb-2">{pin.name}</div>
+                <div className="text-black">{pin.note}</div>
+              </div>
+              <button
+                className="mt-2 px-2 py-1 bg-red-500 text-white rounded hover:bg-red-700"
+                onClick={() => deletePin(idx)}
+              >
+                Delete Pin
+              </button>
+            </Popup>
+          </Marker>
+        ))}
     </>
   );
 }
@@ -62,37 +65,51 @@ export default function SurfMap({ onPinCountChange }: { onPinCountChange?: (coun
   const [spotInput, setSpotInput] = useState("");
   const [noteInput, setNoteInput] = useState("");
 
-  // Load pins from localStorage on mount (client only)
+  // Fetch pins from backend on mount
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) {
-        try {
-          const parsed = JSON.parse(stored);
-          if (Array.isArray(parsed)) {
-            setPins(parsed);
-            console.log("Loaded pins from localStorage:", parsed);
-          }
-        } catch {
-          console.warn("Failed to parse pins from localStorage");
-        }
-      }
-      setLoaded(true);
-    }
-  }, []);
+    fetch(`${API_URL}/pins`)
+      .then(res => res.json())
+      .then(data => {
+        setPins(Array.isArray(data) ? data : []);
+        setLoaded(true);
+        if (onPinCountChange) onPinCountChange(Array.isArray(data) ? data.length : 0);
+      })
+      .catch(() => setLoaded(true));
+  }, [onPinCountChange]);
 
-  // Save pins to localStorage whenever they change (after initial load)
-  useEffect(() => {
-    if (loaded && typeof window !== "undefined") {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(pins));
-      if (onPinCountChange) onPinCountChange(pins.length);
-      console.log("Saved pins to localStorage:", pins);
+  // Add pin via backend
+  const handleAddPin = () => {
+    if (modalLatLng && nameInput.trim() && spotInput.trim() && noteInput.trim()) {
+      fetch(`${API_URL}/pins`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          lat: modalLatLng.lat,
+          lng: modalLatLng.lng,
+          name: nameInput.trim(),
+          spot: spotInput.trim(),
+          note: noteInput.trim(),
+        })
+      })
+        .then(res => res.json())
+        .then(newPin => {
+          setPins(prev => [...prev, newPin]);
+          if (onPinCountChange) onPinCountChange(pins.length + 1);
+        });
+      closeModal();
     }
-  }, [pins, loaded, onPinCountChange]);
+  };
 
+  // Delete pin via backend
   const deletePin = useCallback((idx: number) => {
-    setPins((prev) => prev.filter((_, i) => i !== idx));
-  }, []);
+    const pinToDelete = pins[idx];
+    if (!pinToDelete) return;
+    fetch(`${API_URL}/pins/${pinToDelete.id}`, { method: 'DELETE' })
+      .then(() => {
+        setPins(prev => prev.filter((_, i) => i !== idx));
+        if (onPinCountChange) onPinCountChange(pins.length - 1);
+      });
+  }, [pins, onPinCountChange]);
 
   const openAddModal = (lat: number, lng: number) => {
     setModalLatLng({ lat, lng });
@@ -108,19 +125,6 @@ export default function SurfMap({ onPinCountChange }: { onPinCountChange?: (coun
     setNameInput("");
     setSpotInput("");
     setNoteInput("");
-  };
-
-  const handleAddPin = () => {
-    if (modalLatLng && nameInput.trim() && spotInput.trim() && noteInput.trim()) {
-      setPins((prev) => [...prev, { 
-        lat: modalLatLng.lat, 
-        lng: modalLatLng.lng, 
-        name: nameInput.trim(),
-        spot: spotInput.trim(),
-        note: noteInput.trim() 
-      }]);
-      closeModal();
-    }
   };
 
   return (
