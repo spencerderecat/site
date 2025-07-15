@@ -14,6 +14,7 @@ interface Pin {
 }
 
 const API_URL = "/api";
+const REQUIRED_PASSWORD = "shootsbrah";
 
 const svgString = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" width="36" height="36" style="display:block;"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" /></svg>`;
 
@@ -25,7 +26,12 @@ const customIcon = new L.DivIcon({
   popupAnchor: [0, -36],
 });
 
-function PinsLayer({ pins, deletePin, openAddModal }: { pins: Pin[]; deletePin: (idx: number) => void; openAddModal: (lat: number, lng: number) => void }) {
+function PinsLayer({ pins, deletePin, openAddModal, isAuthenticated }: { 
+  pins: Pin[]; 
+  deletePin: (idx: number) => void; 
+  openAddModal: (lat: number, lng: number) => void;
+  isAuthenticated: boolean;
+}) {
   useMapEvents({
     click(e) {
       openAddModal(e.latlng.lat, e.latlng.lng);
@@ -43,12 +49,14 @@ function PinsLayer({ pins, deletePin, openAddModal }: { pins: Pin[]; deletePin: 
                 <div className="text-gray-600 mb-2">{pin.name}</div>
                 <div className="text-black">{pin.note}</div>
               </div>
-              <button
-                className="mt-2 px-2 py-1 bg-red-500 text-white rounded hover:bg-red-700"
-                onClick={() => deletePin(idx)}
-              >
-                Delete Pin
-              </button>
+              {isAuthenticated && (
+                <button
+                  className="mt-2 px-2 py-1 bg-red-500 text-white rounded hover:bg-red-700"
+                  onClick={() => deletePin(idx)}
+                >
+                  Delete Pin
+                </button>
+              )}
             </Popup>
           </Marker>
         ))}
@@ -64,6 +72,10 @@ export default function SurfMap({ onPinCountChange }: { onPinCountChange?: (coun
   const [nameInput, setNameInput] = useState("");
   const [spotInput, setSpotInput] = useState("");
   const [noteInput, setNoteInput] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [passwordModalOpen, setPasswordModalOpen] = useState(false);
+  const [passwordInput, setPasswordInput] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   // Fetch pins from backend on mount
   useEffect(() => {
@@ -79,6 +91,11 @@ export default function SurfMap({ onPinCountChange }: { onPinCountChange?: (coun
 
   // Add pin via backend
   const handleAddPin = () => {
+    if (!isAuthenticated) {
+      setPasswordModalOpen(true);
+      return;
+    }
+    
     if (modalLatLng && nameInput.trim() && spotInput.trim() && noteInput.trim()) {
       fetch(`${API_URL}/pins`, {
         method: 'POST',
@@ -102,6 +119,11 @@ export default function SurfMap({ onPinCountChange }: { onPinCountChange?: (coun
 
   // Delete pin via backend
   const deletePin = useCallback((idx: number) => {
+    if (!isAuthenticated) {
+      setPasswordModalOpen(true);
+      return;
+    }
+    
     const pinToDelete = pins[idx];
     if (!pinToDelete) return;
     fetch(`${API_URL}/pins/${pinToDelete.id}`, { method: 'DELETE' })
@@ -109,9 +131,14 @@ export default function SurfMap({ onPinCountChange }: { onPinCountChange?: (coun
         setPins(prev => prev.filter((_, i) => i !== idx));
         if (onPinCountChange) onPinCountChange(pins.length - 1);
       });
-  }, [pins, onPinCountChange]);
+  }, [pins, onPinCountChange, isAuthenticated]);
 
   const openAddModal = (lat: number, lng: number) => {
+    if (!isAuthenticated) {
+      setPasswordModalOpen(true);
+      return;
+    }
+    
     setModalLatLng({ lat, lng });
     setNameInput("");
     setSpotInput("");
@@ -127,6 +154,24 @@ export default function SurfMap({ onPinCountChange }: { onPinCountChange?: (coun
     setNoteInput("");
   };
 
+  const handlePasswordSubmit = () => {
+    if (passwordInput === REQUIRED_PASSWORD) {
+      setIsAuthenticated(true);
+      setPasswordModalOpen(false);
+      setPasswordInput("");
+      setPasswordError("");
+    } else {
+      setPasswordError("Incorrect password");
+      setPasswordInput("");
+    }
+  };
+
+  const closePasswordModal = () => {
+    setPasswordModalOpen(false);
+    setPasswordInput("");
+    setPasswordError("");
+  };
+
   return (
     <div className="relative w-full h-full">
       <MapContainer center={[20, 0]} zoom={2} style={{ width: "100%", height: "100%" }} scrollWheelZoom={true}>
@@ -134,8 +179,10 @@ export default function SurfMap({ onPinCountChange }: { onPinCountChange?: (coun
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <PinsLayer pins={pins} deletePin={deletePin} openAddModal={openAddModal} />
+        <PinsLayer pins={pins} deletePin={deletePin} openAddModal={openAddModal} isAuthenticated={isAuthenticated} />
       </MapContainer>
+      
+      {/* Add Pin Modal */}
       {modalOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-[1000] bg-black/40">
           <div className="bg-white rounded-xl shadow-2xl p-8 w-full max-w-md flex flex-col items-center">
@@ -174,6 +221,44 @@ export default function SurfMap({ onPinCountChange }: { onPinCountChange?: (coun
                 disabled={!nameInput.trim() || !spotInput.trim() || !noteInput.trim()}
               >
                 Add
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Password Modal */}
+      {passwordModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center z-[1000] bg-black/40">
+          <div className="bg-white rounded-xl shadow-2xl p-8 w-full max-w-md flex flex-col items-center">
+            <h2 className="text-xl font-bold mb-4 text-black">Enter Password</h2>
+            <p className="text-sm text-gray-600 mb-4 text-center">
+              Password required to add or delete pins
+            </p>
+            <input
+              type="password"
+              className="w-full p-2 border border-gray-300 rounded mb-3 text-black"
+              placeholder="Password"
+              value={passwordInput}
+              onChange={e => setPasswordInput(e.target.value)}
+              onKeyPress={e => e.key === 'Enter' && handlePasswordSubmit()}
+              autoFocus
+            />
+            {passwordError && (
+              <p className="text-red-500 text-sm mb-3">{passwordError}</p>
+            )}
+            <div className="flex gap-4 w-full justify-end">
+              <button
+                className="px-4 py-2 rounded bg-gray-200 text-black hover:bg-gray-300"
+                onClick={closePasswordModal}
+              >
+                Cancel
+              </button>
+              <button
+                className="px-4 py-2 rounded bg-blue-600 text-white font-bold hover:bg-blue-700"
+                onClick={handlePasswordSubmit}
+              >
+                Submit
               </button>
             </div>
           </div>

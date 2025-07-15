@@ -18,8 +18,9 @@ export default function SurfPage() {
           <SurfMap onPinCountChange={setPinCount} />
         </div>
       </div>
-      <div className="w-full flex justify-center mt-6">
+      <div className="w-full flex flex-col items-center mt-6">
         <span className="text-lg font-bold text-black">spot counter: {pinCount}</span>
+        <span className="text-sm text-gray-600 mt-1">(text spencer asking for the password to add or delete pins)</span>
       </div>
     </>
   );
