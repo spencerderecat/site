@@ -183,9 +183,19 @@ export default function SurfMap({ onPinCountChange }: { onPinCountChange?: (coun
     setPasswordError("");
   };
 
+  if (!loaded) {
+    return <div className="w-full h-full flex items-center justify-center">Loading map...</div>;
+  }
+
   return (
     <div className="relative w-full h-full">
-      <MapContainer center={[20, 0]} zoom={2} style={{ width: "100%", height: "100%" }} scrollWheelZoom={true}>
+      <MapContainer 
+        key="surf-map"
+        center={[20, 0]} 
+        zoom={2} 
+        style={{ width: "100%", height: "100%" }} 
+        scrollWheelZoom={true}
+      >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
