@@ -206,7 +206,7 @@ export default function Home() {
           <div className="flex items-center justify-between p-4 bg-gradient-to-r from-green-500 to-green-600">
             <div className="flex items-center gap-2">
               <Music size={20} className="text-white" />
-              <h3 className="text-white font-semibold text-sm">What I'm Listening To</h3>
+              <h3 className="text-white font-semibold text-sm">What I&apos;m Listening To</h3>
             </div>
             <button 
               onClick={(e) => {
