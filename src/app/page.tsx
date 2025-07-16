@@ -173,10 +173,12 @@ export default function Home() {
         {/* Surf Map Section */}
         <section id="surf" className="min-h-screen flex flex-col items-center justify-center p-4 md:p-8 bg-white/5 backdrop-blur-sm">
           <div className="w-full max-w-6xl">
-            <h2 className="text-3xl font-bold text-black mb-8 text-center">surf spots</h2>
+            <h2 className="text-3xl font-bold text-black mb-8 text-center lg:text-left">surf spots</h2>
             <div className="w-full h-[70vh] rounded-xl overflow-hidden shadow-2xl">
               {showSurfMap ? (
-                <SurfMap key="surf-map-instance" onPinCountChange={setPinCount} />
+                <div className="w-full h-full">
+                  <SurfMap key={`surf-map-${Date.now()}`} onPinCountChange={setPinCount} />
+                </div>
               ) : (
                 <div className="w-full h-full flex items-center justify-center bg-gray-100">
                   <div className="text-gray-500">Loading map...</div>
