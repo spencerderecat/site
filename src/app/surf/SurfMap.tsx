@@ -2,6 +2,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
 import L from "leaflet";
+import { FlagTriangleRight } from 'lucide-react';
 import 'leaflet/dist/leaflet.css'
 
 interface Pin {
@@ -16,15 +17,25 @@ interface Pin {
 const API_URL = "/api";
 const REQUIRED_PASSWORD = "shootsbrah";
 
-const svgString = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" width="36" height="36" style="display:block;"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" /></svg>`;
+// Create a custom icon using the provided SVG for FlagTriangleRight
+const createCustomIcon = () => {
+  const iconElement = document.createElement('div');
+  iconElement.innerHTML = `
+    <div style="display: flex; align-items: center; justify-content: center; color: #000000;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-flag-triangle-right-icon lucide-flag-triangle-right"><path d="M7 22V2l10 5-10 5"/></svg>
+    </div>
+  `;
+  
+  return new L.DivIcon({
+    html: iconElement.innerHTML,
+    className: "custom-svg-pin",
+    iconSize: [24, 24],
+    iconAnchor: [12, 24],
+    popupAnchor: [0, -24],
+  });
+};
 
-const customIcon = new L.DivIcon({
-  html: `<div style="display: flex; align-items: center; justify-content: center;">${svgString}</div>`,
-  className: "custom-svg-pin",
-  iconSize: [36, 36],
-  iconAnchor: [18, 36],
-  popupAnchor: [0, -36],
-});
+const customIcon = createCustomIcon();
 
 function PinsLayer({ pins, deletePin, openAddModal, isAuthenticated }: { 
   pins: Pin[]; 
