@@ -19,7 +19,7 @@ spencerd/
 │       ├── surf/
 │       │   ├── page.tsx
 │       │   └── SurfMap.tsx
-│       ├── moments/
+│       ├── other/
 │       │   └── page.tsx
 │       ├── about/
 │       │   └── page.tsx
@@ -54,7 +54,7 @@ The frontend will start on `http://localhost:3000`
 
 - **Groovy Pastel Theme** - Colorful tie-dye background with animated gradients
 - **Bubble Letter Typography** - "SPENCER" displayed in massive colorful bubble letters
-- **Interactive Buttons** - Four themed buttons for About, Music, Surf, and Moments
+- **Interactive Buttons** - Four themed buttons for About, Music, Surf, and Other
 - **Responsive Design** - Works on desktop and mobile devices
 - **Smooth Animations** - Hover effects and transitions throughout
 
@@ -64,7 +64,7 @@ The frontend will start on `http://localhost:3000`
 - `/music` - Music section with Spotify playlist
 - `/surf` - Surf section with interactive map and spot counter
 - `/about` - About section with bullet points and pinned images
-- `/moments` - Moments section (placeholder)
+- `/other` - Other section (placeholder)
 
 ## Tech Stack
 

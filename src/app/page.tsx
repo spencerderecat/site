@@ -29,8 +29,8 @@ export default function Home() {
             <span className="text-black text-xl font-bold cursor-pointer hover:underline transition-all duration-200">SURF</span>
           </Link>
           
-          <Link href="/moments" className="group">
-            <span className="text-black text-xl font-bold cursor-pointer hover:underline transition-all duration-200">MOMENTS</span>
+          <Link href="/other" className="group">
+            <span className="text-black text-xl font-bold cursor-pointer hover:underline transition-all duration-200">OTHER</span>
           </Link>
         </div>
       </div>
