@@ -27,6 +27,7 @@ export default function AboutPage() {
           <ul className="space-y-4 text-lg text-black">
             <li>• I attended UC Berkeley (Cal) and am a massive cal football fan</li>
             <li>• I work as a software engineer at Intuit</li>
+            <li>• I am from <a href="https://www.travelandleisure.com/thmb/1GwEYerMeuaPbDUjQTOdkGhf88g=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/iguazu-falls-argentina-brazil-MOSTBEAUTIFUL0921-e967cc4764ca4eb2b9941bd1b48d64b5.jpg" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Santa Rosa, CA</a></li>
             <li>• I have a twin brother</li>
             <li>• I love San Francisco</li>
             <li>• I enjoy building things from scratch (like this website)</li>
