@@ -1,12 +1,15 @@
 'use client';
 
 import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
 
 export default function AboutPage() {
   return (
     <>
       <div className="fixed inset-0 bg-pink-100 -z-10" />
-      <Link href="/" className="fixed top-4 left-4 text-3xl text-black hover:underline cursor-pointer z-50">←</Link>
+      <Link href="/" className="fixed top-4 left-4 text-3xl text-black hover:underline cursor-pointer z-50">
+        <ArrowLeft size={32} />
+      </Link>
       <div className="flex flex-col md:flex-row items-center justify-center min-h-screen p-4 md:p-8 gap-8">
         {/* Left image pinned effect */}
         <div className="relative flex flex-col items-center w-full md:w-auto mb-8 md:mb-0">
@@ -17,20 +20,6 @@ export default function AboutPage() {
             alt="Crab with Sunglasses"
             className="rounded-2xl shadow-lg w-full max-w-xs md:max-w-sm max-h-[400px] md:max-h-[600px] object-contain border-2 border-gray-300 p-2 bg-white"
           />
-          {/* Arrow and caption */}
-          <div className="flex flex-col items-center mt-4 md:mt-2 mb-4 md:mb-0">
-            <svg
-              width="60"
-              height="40"
-              viewBox="0 0 60 40"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="-rotate-45"
-            >
-              <line x1="8" y1="36" x2="52" y2="8" stroke="#000" strokeWidth="2" strokeLinecap="round"/>
-            </svg>
-            <span className="mt-1 text-lg text-black">my family</span>
-          </div>
         </div>
         {/* Center about text */}
         <div className="max-w-md w-full flex flex-col items-center md:items-start mt-4 md:mt-[-140px]">
@@ -51,22 +40,8 @@ export default function AboutPage() {
           <img
             src="/picnic-group.png"
             alt="Picnic Group"
-            className="rounded-2xl shadow-lg w-full max-w-xs md:max-w-sm border-2 border-gray-300 p-2 bg-white"
+            className="rounded-2xl shadow-lg w-full max-w-[320px] md:max-w-[320px] border-2 border-gray-300 p-2 bg-white"
           />
-          {/* Arrow and caption */}
-          <div className="flex flex-col items-center mt-4 md:mt-2">
-            <svg
-              width="60"
-              height="40"
-              viewBox="0 0 60 40"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="rotate-45"
-            >
-              <line x1="52" y1="36" x2="8" y2="8" stroke="#000" strokeWidth="2" strokeLinecap="round"/>
-            </svg>
-            <span className="mt-1 text-lg text-black">goofin around with a crab</span>
-          </div>
         </div>
       </div>
     </>

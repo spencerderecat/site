@@ -10,10 +10,12 @@ export default function Home() {
       
       {/* Main content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen p-8">
-        {/* SPENCER in bubble letters */}
-        <h1 className="text-8xl md:text-9xl font-black text-black mb-16 tracking-wider animate-spinY" style={{transformStyle: 'preserve-3d'}}>
-          SPENCER
-        </h1>
+        {/* SPENCER in bubble letters - same width as tabs */}
+        <div className="flex justify-center mb-16 max-w-4xl">
+          <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-black tracking-wider animate-spinY" style={{transformStyle: 'preserve-3d'}}>
+            SPENCER
+          </h1>
+        </div>
         
         {/* Four buttons horizontally spread */}
         <div className="flex flex-wrap justify-center gap-6 max-w-4xl">
