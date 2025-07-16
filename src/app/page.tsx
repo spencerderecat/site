@@ -135,8 +135,8 @@ export default function Home() {
         {/* About Section */}
         <section id="about" className="min-h-screen flex flex-col lg:flex-row items-start justify-center p-4 md:p-8 gap-8 bg-white/10 backdrop-blur-sm">
           <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start justify-center min-h-screen">
-            <h2 className="text-3xl font-bold text-black mb-8 text-center lg:text-left">about</h2>
-            <ul className="space-y-4 text-lg text-black max-w-md">
+            <h2 className="text-3xl font-bold text-black mb-8 text-center lg:text-left lg:ml-8 xl:ml-12 2xl:ml-16">about</h2>
+            <ul className="space-y-4 text-lg text-black max-w-md lg:ml-8 xl:ml-12 2xl:ml-16">
               <li>• I attended UC Berkeley (Cal) and am a massive cal football fan</li>
               <li>• I work as a software engineer at Intuit</li>
               <li>• I am from <a href="https://www.travelandleisure.com/thmb/1GwEYerMeuaPbDUjQTOdkGhf88g=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/iguazu-falls-argentina-brazil-MOSTBEAUTIFUL0921-e967cc4764ca4eb2b9941bd1b48d64b5.jpg" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Santa Rosa, CA</a></li>
@@ -171,10 +171,13 @@ export default function Home() {
         </section>
 
         {/* Surf Map Section */}
-        <section id="surf" className="min-h-screen flex flex-col items-center justify-center p-4 md:p-8 bg-white/5 backdrop-blur-sm">
-          <div className="w-full max-w-6xl">
-            <h2 className="text-3xl font-bold text-black mb-8 text-center lg:text-left">surf spots</h2>
-            <div className="w-full h-[70vh] rounded-xl overflow-hidden shadow-2xl">
+        <section id="surf" className="min-h-screen flex flex-col items-start justify-center p-4 md:p-8 bg-white/5 backdrop-blur-sm">
+          <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start justify-center mb-8">
+            <h2 className="text-3xl font-bold text-black mb-8 text-center lg:text-left lg:ml-8 xl:ml-12 2xl:ml-16">surf spots</h2>
+          </div>
+          
+          <div className="w-full flex flex-col items-center justify-center">
+            <div className="w-full max-w-6xl h-[70vh] rounded-xl overflow-hidden shadow-2xl">
               {showSurfMap ? (
                 <div className="w-full h-full">
                   <SurfMap key={`surf-map-${Date.now()}`} onPinCountChange={setPinCount} />
