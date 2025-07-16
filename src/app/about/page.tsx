@@ -29,9 +29,9 @@ export default function AboutPage() {
             <li>• I work as a software engineer at Intuit</li>
             <li>• I am from <a href="https://www.travelandleisure.com/thmb/1GwEYerMeuaPbDUjQTOdkGhf88g=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/iguazu-falls-argentina-brazil-MOSTBEAUTIFUL0921-e967cc4764ca4eb2b9941bd1b48d64b5.jpg" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Santa Rosa, CA</a></li>
             <li>• I have a twin brother</li>
-            <li>• I love San Francisco</li>
             <li>• I enjoy building things from scratch (like this website)</li>
             <li>• I am currently building a <a href="https://www.lego.com/en-us/product/tuxedo-cat-21349?cmp=KAC-INI-GOOGUS-GO-US_GL-EN-RE-PS-BUY-ESCAPE-LEGO_IDEAS-SHOP-BP-MM-ALL-CIDNA00000-NOVELTIES-LEGO_IDEAS&ef_id=CjwKCAjwyb3DBhBlEiwAqZLe5LMX7B-eyZTrDOKG-b12E0g_1DeLXp-n0gREmY84Ih0JbJ7Y7Y15nhoCOU0QAvD_BwE%3AG%3As&gad_campaignid=20573417166&gad_source=1&gbraid=0AAAAADESMXIxf4XAdl-1bNH4ZlQ3McQ7E&gclid=CjwKCAjwyb3DBhBlEiwAqZLe5LMX7B-eyZTrDOKG-b12E0g_1DeLXp-n0gREmY84Ih0JbJ7Y7Y15nhoCOU0QAvD_BwE&s_kwcid=AL%21790%213%21701035365821%21e%21%21g%21%21tuxedo+cat+lego%2120573417166%21161687392726&consent-modal=show" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">tuxedo cat lego</a></li>
+            <li>• Checkout my github <a href="https://github.com/spencerderecat" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">here</a></li>
           </ul>
         </div>
         {/* Right image pinned effect */}
